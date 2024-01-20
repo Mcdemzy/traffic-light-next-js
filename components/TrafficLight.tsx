@@ -2,14 +2,34 @@
 
 import React, { useEffect, useState } from "react";
 
-type Light = "red" | "yellow " | "green";
+type Light = "red" | "yellow" | "green";
 
 function TrafficLight() {
   const [light, setLight] = useState<Light>("red");
 
   useEffect(() => {
-    const timer = setTimeout(() => {}, 2000);
+    const timer = setTimeout(() => {
+      if (light === "red") {
+        setLight("green");
+      }
+      if (light === "green") {
+        setLight("yellow");
+      }
+      if (light === "yellow") {
+        setLight("red");
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
   }, [light]);
+
+  const getLightDuration = (currentLight: Light) => {
+    if (currentLight === "red") {
+      return 7;
+    }
+    if (currentLight === "green" || currentLight === "yellow") {
+      return 5;
+    }
+  };
 
   return (
     <div className="flex flex-col gap-5 border p-10">
