@@ -18,7 +18,7 @@ function TrafficLight() {
       if (light === "yellow") {
         setLight("red");
       }
-    }, 2000);
+    }, getLightDuration(light) * 1000);
     return () => clearTimeout(timer);
   }, [light]);
 
@@ -29,6 +29,7 @@ function TrafficLight() {
     if (currentLight === "green" || currentLight === "yellow") {
       return 5;
     }
+    return 0;
   };
 
   return (
