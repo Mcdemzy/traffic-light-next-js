@@ -10,13 +10,13 @@ function TrafficLight() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (light === "red") {
-        setLight("green");
-      }
-      if (light === "green") {
         setLight("yellow");
       }
-      if (light === "yellow") {
+      if (light === "green") {
         setLight("red");
+      }
+      if (light === "yellow") {
+        setLight("green");
       }
     }, getLightDuration(light) * 1000);
     return () => clearTimeout(timer);
